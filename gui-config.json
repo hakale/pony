@@ -1,0 +1,113 @@
+{
+    "isVerboseLogging": "true",
+    "proxyPort": 0,
+    "availabilityStatistics": "false",
+    "index": -1,
+    "strategy": "com.shadowsocks.strategy.balancing",
+    "proxyServer": "null",
+    "useProxy": "false",
+    "logViewer": {
+        "maximized": "false",
+        "left": 123,
+        "toolbarShown": "false",
+        "wrapText": "false",
+        "bgColor": "Black",
+        "fontName": "Consolas",
+        "width": 974,
+        "topMost": "false",
+        "textColor": "White",
+        "top": 184,
+        "height": 735,
+        "fontSize": 8.25
+    },
+    "global": "false",
+    "localPort": 1080,
+    "autoCheckUpdate": "false",
+    "isDefault": "false",
+    "shareOverLan": "true",
+    "pacUrl": "null",
+    "configs": [
+        {
+            "remarks": "jpp0",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31775,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.210"
+        },
+        {
+            "remarks": "jpp1",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31547,
+            "method": "aes-256-cfb",
+            "server": "153.125.237.206"
+        },
+        {
+            "remarks": "jpp2",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31992,
+            "method": "aes-256-cfb",
+            "server": "153.125.234.145"
+        },
+        {
+            "remarks": "jpp3",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31683,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.177"
+        },
+        {
+            "remarks": "jpp4",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31874,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.210"
+        },
+        {
+            "remarks": "jpp5",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31312,
+            "method": "aes-256-cfb",
+            "server": "153.125.237.208"
+        },
+        {
+            "remarks": "jpp6",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31611,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.210"
+        },
+        {
+            "remarks": "jpp7",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31740,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.210"
+        },
+        {
+            "remarks": "jpp8",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31938,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.206"
+        },
+        {
+            "remarks": "jpp9",
+            "auth": "false",
+            "password": "passwd",
+            "server_port": 31522,
+            "method": "aes-256-cfb",
+            "server": "153.125.235.209"
+        }
+    ],
+    "useOnlinePac": "false",
+    "enabled": "false"
+}

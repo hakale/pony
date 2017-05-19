@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js">
+
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <title>路遥知马力</title>
+</head>
+
+<body>
+    <h3 class="Center-Container" align="center"> 自动更新Arukas.io上代理信息/每4小时</h3>
+    <p align="center">驾驭时辰:{{update_time}}🐶共{{data|length}}匹小马</p>
+    <div class="container pagination-centered" style="background-color:#90a4ae">
+        <div class="pagination-centered" align="center" style="margin-top: 10px;">
+            <a href="/get_file" class="btn btn-primary">驾驭小马</a>
+        </div>
+        <div class="card-deck">
+            {% for item in data %}
+            <div class="card center" align="center" style="margin-top: 50px; margin-bottom: 50px;">
+                <table class="table center" style="width: 200px; margin-bottom: 10px; margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <td class="span1" align="center">🚂</td>
+                            <td class="span1" align="center">⏳</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="span1" id="ip">{{item.ip}}</td>
+                            <td class="span1" id="ping">Wait...</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href={{item.img_url}}>
+                    <img class="card-img-top" src={{item.img_url}} height="200" width="200" alt="Card image cap">
+                    </a>
+                
+                <div class="card-block" align="center" style="margin-top: 10px;">
+                    <a href={{item.url}} class="btn btn-primary">收入小马</a>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</body>
+<footer align="center">
+    Copyright@Hakale & 2017
+</footer>
+<style type="text/css">
+    .Center-Container {
+        position: relative;
+        /*background-color: #546e7a;*/
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin: 10%;
+    }
+
+    .Absolute-Center {
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        background-color: yellow;
+    }
+</style>
+<script>
+    (function (root, factory) {
+        if (typeof define === 'function' && define.amd) { define([], factory); } else if (typeof module === 'object' && module.exports) { module.exports = factory(); } else { root.ping = factory(); }
+    }(this, function () {
+
+        /**
+         * Creates and loads an image element by url.
+         * @param  {String} url
+         * @return {Promise} promise that resolves to an image element or
+         *                   fails to an Error.
+         */
+        function request_image(url) {
+            return new Promise(function (resolve, reject) {
+                var img = new Image();
+                img.onload = function () { resolve(img); };
+                img.onerror = function () { reject(url); };
+                img.src = url + '?random-no-cache=' + Math.floor((1 + Math.random()) * 0x10000).toString(16);
+            });
+        }
+
+        /**
+         * Pings a url.
+         * @param  {String} url
+         * @param  {Number} multiplier - optional, factor to adjust the ping by.  0.3 works well for HTTP servers.
+         * @return {Promise} promise that resolves to a ping (ms, float).
+         */
+        function ping(url, multiplier) {
+            return new Promise(function (resolve, reject) {
+                var start = (new Date()).getTime();
+                var response = function () {
+                    var delta = ((new Date()).getTime() - start);
+                    delta *= (multiplier || 1);
+                    resolve(delta);
+                };
+                request_image(url).then(response).catch(response);
+
+                // Set a timeout for max-pings, 5s.
+                setTimeout(function () { reject(Error('Timeout')); }, 5000);
+            });
+        }
+
+        return ping;
+    }));
+
+</script>
+<script>
+    function pingwrap(ip, i) {
+        ping(ip).then(function (delta) {
+            console.log('Ping time was ' + String(delta) + ' ms');
+            console.log(i)
+            $("[id=ping]")[i].innerText = delta + 'ms'
+        })
+    }
+    var ipelem = $("[id=ip]")
+    var pingelem = $("[id=ping]")
+    console.log(ipelem)
+    console.log(pingelem)
+    var notes = null;
+    for (var i = 0; i < ipelem.length; i++) {
+        var ipaddress = ipelem[i].innerText
+        console.log(ipaddress)
+        pingwrap(ipaddress, i)
+        // }).catch(function (err) {
+        //     //console.error('Could not ping remote URL', err);
+        // });
+        //console.log(nodes.find("ip"))
+    }
+
+</script>
+
+</html>
